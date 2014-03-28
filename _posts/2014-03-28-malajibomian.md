@@ -8,13 +8,13 @@ tags: [Food]
 
 {% include JB/setup %}
 
-上周在mad butcher看到有卖鸡脖子，还很便宜，于是买盒回来准备自己尝试做一次，👀大美同学做过很多次美味佳肴，以后让我也来研究研究。
+上周在mad butcher看到有卖鸡脖子，还很便宜，于是买盒回来准备自己尝试做一次，看大美同学做过很多次美味佳肴，以后让我也来研究研究。
 就从这次麻辣鸡脖面开始吧。
 先用开水把洗干净的鸡脖烫一下。
 
 <img src="/images/jibo1.jpg" alt="jibo1" class="img-center" width="250" height="250"/>
 
-用老抽腌上一阵。
+##用老抽腌上一阵。
 
 <img src="/images/jibo2.jpg" alt="jibo2" class="img-center" width="250" height="250"/>
 
