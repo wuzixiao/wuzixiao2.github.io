@@ -14,7 +14,7 @@ tags: [Food]
 
 <img src="/images/jibo1.jpg" alt="jibo1" class="img-center" width="250" height="250"/>
 
-##用老抽腌上一阵。
+用老抽腌上一阵。
 
 <img src="/images/jibo2.jpg" alt="jibo2" class="img-center" width="250" height="250"/>
 
