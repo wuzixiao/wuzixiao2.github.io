@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Python程序员容易犯的10个错误--译"
+title: "Python程序员容易犯的10个错误------译"
 description: ""
 category:
 tags: [Programming, Python]
