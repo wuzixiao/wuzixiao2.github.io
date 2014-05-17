@@ -228,6 +228,14 @@ Traceback (most recent call last):
 {% endhighlight %}
 哈哈！我们使用默认参数的方法得到匿名函数来达到想要的效果。有些人觉得这个做很优美。有些人认为这是一个坑。而有些人很不喜欢这样。不过如果你是一个Python程序员，最重要的就是对它的各种情况都清楚明白。
 
+注：在文章后面的回复中，有人提出在create_multipliers()返回一个generater而不是list也可以解决。
+{% highlight Python %}
+>>> def create_multipliers():
+...     return (lambda x : i * x for i in range(5))
+>>> for multiplier in create_multipliers():
+...     print multiplier(2)
+...
+{% endhighlight %}
 
 ###常见错误7：创建循环的模块依赖
 让我们假设有两个文件，a.py 和 b.py, 这两个文件相互引用，如下所示：
