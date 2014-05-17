@@ -1,26 +1,26 @@
 ---
 layout: post
-title: "Python程序员容易犯的10个错误"
+title: "Python程序员容易犯的10个错误[译]"
 description: ""
 category:
 tags: [Programming, Python]
 ---
 {% include JB/setup %}
 
-
-关于Python
+原文请见：<a href="http://www.toptal.com/python/top-10-mistakes-that-python-programmers-make">这里</a>
+###关于Python
 Python是一门解释性、面向对象的高级动态语言。它的内建高级数据结构、动态类型推导与绑定使它对于快速应用程序开发很用吸引力，同时也经常被用做脚本语言和联接各种组件和服务的粘合语言。Python支持模块与包，所以它鼓励程序的模块化与代码重用。
 
-关于这篇文章
+###关于这篇文章
 Python的简单和容易学习有时会让程序员产生误解－－尤其是刚开始学习这门语言的人－－容易掉进坑中，也不能很好的理解这门语言的强大之处。
 基于这点，本文列举了10个不太容易被人发觉的错误，这些错误哪怕是很多高级的Python程序员也有犯的时候。
 <声明:这篇文章的读者需要对Python有深入一点的了解，不然请先读另外一篇文章<a href="http://www.onlamp.com/pub/a/python/2004/02/05/learn_python.html">Python程序员的常见错误</a>。
 
-常见错误1：错误的把表达式当成函数默认参数使用
+###常见错误1：错误的把表达式当成函数默认参数使用
 Python允许程序员指定函数的默认参数。尽管这是一个很好的特性，不过当传递可变类型参数时会让人感觉疑惑。例如,这个函数定义：
 {% highlight Python %}
 >>> def foo(bar=[]):        # bar is optional and defaults to [] if not specified
-...    bar.append("baz")    # but this line could be problematic, as we'll see...
+...    bar.append("baz")    # but this line could be problematic, as we will see...
 ...    return bar
 {% endhighlight %}
 
@@ -35,7 +35,7 @@ Python允许程序员指定函数的默认参数。尽管这是一个很好的�
 ["baz", "baz", "baz"]
 {% endhighlight %}
 
-嗯？为什么每次调用函数foo的时候都会append‘baz’到已有的队列bar中，而不是重新创造一个新的list呢？
+嗯？为什么每次调用函数foo的时候都会append'baz'到已有的队列bar中，而不是重新创造一个新的list呢？
 答案是，函数参数被赋于默认值这个过程只在函数被定义的时候发生。因此，例子中的[]被赋于bar只发生foo()被第一次定义的时候，而之后调用foo()的时候，都不再会重新定义一个bar，而是使用之前已经定义的bar。
 FYI，普通的做法请参考下面的代码：
 {% highlight Python %}
@@ -53,7 +53,7 @@ FYI，普通的做法请参考下面的代码：
 ["baz"]
 {% endhighlight %}
 
-常见错误2：错误的使用class变量
+###常见错误2：错误的使用class变量
 请看下面的例子：
 
 {% highlight Python %}
@@ -88,7 +88,7 @@ FYI，普通的做法请参考下面的代码：
 怎么回事？我们只改变了A.x，为什么C.x也变了呢？
 在Python中，class变量的内部处理和字典处理一样，依据<a href="http://python-history.blogspot.com.ar/2010/06/method-resolution-order.html">Method Resolution Order（MRO）</a>。所以对于上面的代码，由于C中没有x变量，解释器会在C的基类中查找x。换名话说，C并没有x属性，而依靠它的基类A。因此，C.x实际上就是A.x。
 
-常见错误3：在expect块中指定错误的参数
+###常见错误3：在expect块中指定错误的参数
 假设你写了下面的代码：
 {% highlight Python %}
 >>> try:
@@ -114,7 +114,7 @@ Traceback (most recent call last):
 >>>
 {% endhighlight %}
 
-常见错误４：错误理解了Python的作用域。
+###常见错误４：错误理解了Python的作用域。
 Python的作用域是基于<a href="https://blog.mozilla.org/webdev/2011/01/31/python-scoping-understanding-legb/">LEGB(Local,Enclosing,Global,Build-in)</a>规则解决的。看起来很简单明了吧？实际上Python在这方面有几个坑。看下面的代码：
 {% highlight Python %}
 >>> x = 10
@@ -156,7 +156,7 @@ Traceback (most recent call last):
 嗯？为什么foo2出了错而foo1正确呢？
 答案与上面的例子类似，只是这里有一点微小的不同。foo１并不是要赋值给lst，而foo2是。还记得lst += [5]是lst＝lst＋[5]的简写形式吗？这里发生的赋值的情况。简单的说，在Python中作用域外的变量是可读但不可写的。（这里的可读与可写是对于动态类型的语言来说的，可读是保持类型不变，仅在当前类型下进行一些操作，不可使用‘＝’发生赋值操作。可写是使用‘＝’发生赋值，动态语言的赋值可以改变变量的整个类型。）
 
-常见错误５：遍历数组时修改了原数组
+###常见错误５：遍历数组时修改了原数组
 下面代码的错误十分明显：
 {% highlight Python %}
 >>> odd = lambda x : bool(x % 2)
@@ -181,7 +181,7 @@ Traceback (most recent call last):
 [0, 2, 4, 6, 8]
 {% endhighlight %}
 
-常见错误6：对于Python如何在闭包中绑定变量不是很清楚
+###常见错误6：对于Python如何在闭包中绑定变量不是很清楚
 请看下面的例子：
 {% highlight Python %}
 >>> def create_multipliers():
@@ -227,7 +227,7 @@ Traceback (most recent call last):
 哈哈！我们使用默认参数的方法得到匿名函数来达到想要的效果。有些人觉得这个做很优美。有些人认为这是一个坑。而有些人很不喜欢这样。不过如果你是一个Python程序员，最重要的就是对它的各种情况都清楚明白。
 
 
-常见错误7：创建循环的模块依赖
+###常见错误7：创建循环的模块依赖
 让我们假设有两个文件，a.py 和 b.py, 这两个文件相互引用，如下所示：
 在a.py中:
 {% highlight Python %}
@@ -291,12 +291,12 @@ def g():
 1# Printed a second time, this one is our call to 'g'
 {% endhighlight %}
 
-常见错误8：和Python标准库的模块发生命名冲突
+###常见错误8：和Python标准库的模块发生命名冲突
 Python的优点之一是它那些让人难以想象的模块库。但是，如果你不小心，就有可能让你自己的模块名与Python自带的模块库中的名字发生冲突（例如，你也可能有一个叫“email.py”的模块，它就会有标准里的同名的模块发生冲突）
 这可能会导致严重的问题。例如本来你打算引用一个自己的模块结果却把标准库中的模块引用;因为重名，另外的程序包本来想引用标准库却把你的模块错误的引用进来。错误就这样发生了。
 因此，应该小心一点别和标准库中的模块重名。比较容易的方式是把你的代码里的模块名字换一个，总要比去<a href="http://legacy.python.org/dev/peps/">PEP</a>提申请把标准模块名字改掉要好的多：）
 
-常见错误9：错误处理Python2和Python3的不同
+###常见错误9：错误处理Python2和Python3的不同
 看下面的代码：
 {% highlight Python %}
 >>> import b
@@ -377,7 +377,7 @@ value error
 好的！
 （顺便说一下，我们的<a href="http://www.toptal.com/python#hiring-guide">Python Hiring Guide</a>讨论了另外一些从Python2向Python3移植时需要注意的重点之处）
 
-常见错误10：错误的使用__del__方法
+###常见错误10：错误的使用__del__方法
 我们假设你的mod.py文件有这样的代码：
 {% highlight Python%}
 import foo
@@ -415,7 +415,7 @@ class Bar(object):
 {% endhighlight %}
 这里的实现方法给出了一个清晰而可靠的解决方案，可以在程序正常退出时调用任何需要的清理方法。显然，具体的清理方法还要取决于foo.cleanup函数对self.myhandle到底做了什么，不过，你是知道的。
 
-总结
+###总结
 Python是一个强大而灵活的开发语言，它具有很多可以大大提高生产力的机制和范式。不过，就像任何的软件工具和开发语言一样，只停留在表面上的理解不仅不能利用好它的优势之处反而有时会成为绊脚石，就像那句俗语说的：一知半解最危险！
 
 让自己能熟悉Python中的细小的关键之处，就像本文（但是不只）提到的这些，能够帮助更好的使用这门语言，同时也能避免掉进一些常见的坑中。
