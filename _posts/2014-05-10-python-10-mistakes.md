@@ -133,6 +133,7 @@ Traceback (most recent call last):
 上面的错误是这样发生的：当你在一个作用域中进行赋值操作时，操作中的变量被自动的认为是当前作用域中，而作用域之外同名的变量隐藏起来。
 许多人也许会惊讶为什么之前运行正常的一段给变量赋值的代码在这里却发生了UnboundLocalError呢？（更多请参看<a href="https://docs.python.org/2/faq/programming.html#why-am-i-getting-an-unboundlocalerror-when-the-variable-has-a-value">这里</a>）
 在使用lists时可能会让更多程序员裁了跟头。看这面的例子：
+{% highlight Python %}
 >>> lst = [1, 2, 3]
 >>> def foo1():
 ...     lst.append(5)   # This works ok...
@@ -150,12 +151,14 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
     File "<stdin>", line 2, in foo
     UnboundLocalError: local variable 'lst' referenced before assignment
+{% endhighlight %}
 
 嗯？为什么foo2出了错而foo1正确呢？
 答案与上面的例子类似，只是这里有一点微小的不同。foo１并不是要赋值给lst，而foo2是。还记得lst += [5]是lst＝lst＋[5]的简写形式吗？这里发生的赋值的情况。简单的说，在Python中作用域外的变量是可读但不可写的。（这里的可读与可写是对于动态类型的语言来说的，可读是保持类型不变，仅在当前类型下进行一些操作，不可使用‘＝’发生赋值操作。可写是使用‘＝’发生赋值，动态语言的赋值可以改变变量的整个类型。）
 
 常见错误５：遍历数组时修改了原数组
 下面代码的错误十分明显：
+{% highlight Python %}
 >>> odd = lambda x : bool(x % 2)
 >>> numbers = [n for n in range(10)]
 >>> for i in range(len(numbers)):
@@ -165,39 +168,50 @@ Traceback (most recent call last):
 Traceback (most recent call last):
       File "<stdin>", line 2, in <module>
       IndexError: list index out of range
+{% endhighlight %}
+
 
 对于有经验的程序员应该都会知道不能在遍历数组或者列表的时候删除里面的元素。但是当情况变得比上面的代码复杂一些的时候，即使是编程高手也可能不小心犯下上面这样的错误。
 幸运的是，Python包含了一些很棒的编程范式，只要运用得当，就可以使代码变得十分清晰明了。这种简化代码的好处之一就是可以很大程度避免我们犯上面说的错误。这个范式叫<a href="https://docs.python.org/2/tutorial/datastructures.html#tut-listcomps">列表推导式</a>。进一步说，这个特性对于这个问题十分有用，请看上面代码的另外一种解决了问题的方法：
+{% highlight Python %}
 >>> odd = lambda x : bool(x % 2)
 >>> numbers = [n for n in range(10)]
 >>> numbers[:] = [n for n in numbers if not odd(n)]  # ahh, the beauty of it all
 >>> numbers
 [0, 2, 4, 6, 8]
+{% endhighlight %}
 
 常见错误6：对于Python如何在闭包中绑定变量不是很清楚
 请看下面的例子：
+{% highlight Python %}
 >>> def create_multipliers():
 ...     return [lambda x : i * x for i in range(5)]
 >>> for multiplier in create_multipliers():
 ...     print multiplier(2)
 ...
+{% endhighlight %}
 你可能会觉得输出下面的结果：
+{% highlight Python %}
 0
 2
 4
 6
 8
+{% endhighlight %}
 而实际上输出的是：
+{% highlight Python %}
 8
 8
 8
 8
 8
+{% endhighlight %}
 很吃惊吧！
 
 这是由于Python的延迟绑定行为造成的，也就是说闭包中的变量值是多少是在其内部函数被调用的时候确定的。所以对于上面的例子，不管是哪个返回函数被调用了，变量i的值是在它被调用时的作用域里被确定下来的（这个时候，循环已经结束了，i的值被确定为4）
 
 解决这个问题需要一点窍门。
+{% highlight Python %}
 >>> def create_multipliers():
 ...     return [lambda x, i=i : i * x for i in range(5)]
 ...
@@ -209,36 +223,42 @@ Traceback (most recent call last):
 4
 6
 8
+{% endhighlight %}
 哈哈！我们使用默认参数的方法得到匿名函数来达到想要的效果。有些人觉得这个做很优美。有些人认为这是一个坑。而有些人很不喜欢这样。不过如果你是一个Python程序员，最重要的就是对它的各种情况都清楚明白。
 
 
 常见错误7：创建循环的模块依赖
 让我们假设有两个文件，a.py 和 b.py, 这两个文件相互引用，如下所示：
 在a.py中:
+{% highlight Python %}
 import b
 def f():
     return b.x
 
 print f()
-
+{% endhighlight %}
 在b.py中：
+{% highlight Python %}
 import a
 
 x = 1
 
 def g():
     print a.f()
-
+{% endhighlight %}
 首先，我们试一下引用a.py:
+{% highlight Python %}
 >>> import a
 1
-
+{% endhighlight %}
+在b.py中：
 正常工作。也许你会有一点吃惊。毕竟，这里确实存在会导致错误出错的相互引用的情况，不是吗？
 答案是仅仅是两个看上去的相互引用并不会在Python中引起错误发生。如果一个模块已经被引用，Python是可以做到不重复的引用的。但是，还要看每个模块是何时去访问另外模块的函数或者变量的，这里可能的确会引起错误发生的。
 
 回到我们的例子，当我们引用a.py的时候，引用b.py没有错误出现，是因为在b.py中并不需要在它引用的时候从a.py中得到什么。b.py中只使用了a.f(),而它是在g()中才调用的。而a.py和b.py在引用的时候都不会去调用g(),所以一切ok。
 
 但是当我们引用b.py时（之前没有先引用a.py）：
+{% highlight Python %}
 >>> import b
 Traceback (most recent call last):
         File "<stdin>", line 1, in <module>
@@ -249,22 +269,27 @@ Traceback (most recent call last):
         File "a.py", line 4, in f
       return b.x
 AttributeError: 'module' object has no attribute 'x'
-
+{% endhighlight %}
 哦哦！不好了！这里的问题是，引用b.py的时候，它会先引用a.py,在a中会调用f(),f()中要访问b.x.但是b.x还没有被定义呢！因此，AttributeError异常就出现了。
 
 这里的一个解决方法倒是没有什么，简单的改一下b.py将import a放到g()内部：
 
+{% highlight Python %}
 x = 1
 
 def g():
     import a  # This will be evaluated only when g() is called
     print a.f()
+{% endhighlight %}
+
 
 这样当我们引用的时候，一切ok了：
+{% highlight Python %}
 >>> import b
 >>> b.g()
 1# Printed a first time since module 'a' calls 'print f()' at the end
 1# Printed a second time, this one is our call to 'g'
+{% endhighlight %}
 
 常见错误8：和Python标准库的模块发生命名冲突
 Python的优点之一是它那些让人难以想象的模块库。但是，如果你不小心，就有可能让你自己的模块名与Python自带的模块库中的名字发生冲突（例如，你也可能有一个叫“email.py”的模块，它就会有标准里的同名的模块发生冲突）
@@ -273,6 +298,8 @@ Python的优点之一是它那些让人难以想象的模块库。但是，如�
 
 常见错误9：错误处理Python2和Python3的不同
 看下面的代码：
+{% highlight Python %}
+>>> import b
 import sys
 
 def bar(i):
@@ -292,16 +319,18 @@ def bad():
     print(e)
 
 bad()
-
+{% endhighlight %}
 在Python2里，运行正常：
+{% height light Python%}
 $ Python foo.py 1
 key error
 1
 $ Python foo.py 2
 value error
 2
-
+{% endhightlight %}
 不过现在让我们在Python3里试一下：
+{% heightlight Python%}
 $ Python3 foo.py 1
 key error
 Traceback (most recent call last):
@@ -310,9 +339,10 @@ Traceback (most recent call last):
   File "foo.py", line 17, in bad
     print(e)
 UnboundLocalError: local variable 'e' referenced before assignment
-
+{% endhightlight %}
 这是怎么回事？这里的"问题"是，在Python3中，异常(exception)对象并不能在except作用域之外被访问（这其中的原因是，这样做会在栈空间中保存一个引用循环，直到自动垃圾回收器运行的时候才被清理掉。更多技术细节请参考<a href="https://docs.python.org/3/reference/compound_stmts.html#except">这里</a>）
 避免这个问题的方法之一是在except作用域之外保存一个异常(exception)对象的引用，这样它就可以被访问了。这时的代码可以同时在Python2和Python3中运行。
+{% highlight Python%}
 import sys
 
 def bar(i):
@@ -334,29 +364,34 @@ def good():
     print(exception)
 
 good()
-
+{% endhighlight %}
 在Py3K中运行：
+{% highlight Python%}
 $ Python3 foo.py 1
 key error
 1
 $ Python3 foo.py 2
 value error
 2
-
+{% endhighlight %}
 好的！
 （顺便说一下，我们的<a href="http://www.toptal.com/python#hiring-guide">Python Hiring Guide</a>讨论了另外一些从Python2向Python3移植时需要注意的重点之处）
 
 常见错误10：错误的使用__del__方法
 我们假设你的mod.py文件有这样的代码：
+{% highlight Python%}
 import foo
 
 class Bar(object):
    	    ...
     def __del__(self):
         foo.cleanup(self.myhandle)
+{% endhighlight %}
 然后你在另外一个文件another_mod.py中写下：
+{% highlight Python %}
 import mod
 mybar = mod.Bar()
+{% endhighlight %}
 
 你已经有了一个丑陋的AttributeError异常。
 
@@ -365,6 +400,7 @@ mybar = mod.Bar()
 一个解决的方法是使用atexit.register()。这样，当你的程序结束时（正常的结束），你之前注册的处理函数就会在解释器关闭之前被调用。
 
 理解了这些，解决上面问题的代码就写成了这样：
+{% highlight Python %}
 import foo
 import atexit
 
@@ -376,7 +412,7 @@ class Bar(object):
     def __init__(self):
         ...
         atexit.register(cleanup, self.myhandle)
-
+{% endhighlight %}
 这里的实现方法给出了一个清晰而可靠的解决方案，可以在程序正常退出时调用任何需要的清理方法。显然，具体的清理方法还要取决于foo.cleanup函数对self.myhandle到底做了什么，不过，你是知道的。
 
 总结
