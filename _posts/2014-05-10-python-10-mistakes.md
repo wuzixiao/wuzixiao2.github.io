@@ -8,7 +8,9 @@ tags: [Programming, Python]
 {% include JB/setup %}
 
 原文请见：<a href="http://www.toptal.com/python/top-10-mistakes-that-python-programmers-make">这里</a>
+
 ###关于Python
+
 Python是一门解释性、面向对象的高级动态语言。它的内建高级数据结构、动态类型推导与绑定使它对于快速应用程序开发很用吸引力，同时也经常被用做脚本语言和联接各种组件和服务的粘合语言。Python支持模块与包，所以它鼓励程序的模块化与代码重用。
 
 ###关于这篇文章
