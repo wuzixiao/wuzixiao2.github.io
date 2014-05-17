@@ -321,16 +321,16 @@ def bad():
 bad()
 {% endhighlight %}
 在Python2里，运行正常：
-{% height light Python%}
+{% highlight Python%}
 $ Python foo.py 1
 key error
 1
 $ Python foo.py 2
 value error
 2
-{% endhightlight %}
+{% endhighlight %}
 不过现在让我们在Python3里试一下：
-{% heightlight Python%}
+{% highlight Python%}
 $ Python3 foo.py 1
 key error
 Traceback (most recent call last):
