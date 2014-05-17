@@ -339,7 +339,7 @@ Traceback (most recent call last):
   File "foo.py", line 17, in bad
     print(e)
 UnboundLocalError: local variable 'e' referenced before assignment
-{% endhightlight %}
+{% endhighlight %}
 这是怎么回事？这里的"问题"是，在Python3中，异常(exception)对象并不能在except作用域之外被访问（这其中的原因是，这样做会在栈空间中保存一个引用循环，直到自动垃圾回收器运行的时候才被清理掉。更多技术细节请参考<a href="https://docs.python.org/3/reference/compound_stmts.html#except">这里</a>）
 避免这个问题的方法之一是在except作用域之外保存一个异常(exception)对象的引用，这样它就可以被访问了。这时的代码可以同时在Python2和Python3中运行。
 {% highlight Python%}
