@@ -16,6 +16,11 @@ Here is a simple UML Class Diagram of logging.py
 <img src="/images/logging.png" alt="Logging" class="img-center" />
 
 {% highlight Python %}
+#settings.py
+DEBUG = 1
+{% endhighlight %}
+
+{% highlight Python %}
 #__init__.py
 import logging
 import settings
@@ -26,16 +31,15 @@ else:
 {% endhighlight %}
 
 {% highlight Python %}
-#settings.py
-DEBUG = 1
-{% endhighlight %}
-
-{% highlight Python %}
 #test.py
 import logging
 log = logging.getLogger(__name__)
 
-log.debug('run here')
+log.info('starting test')
+log.debug('run through here')
+log.warning('are you sure you want to do this?')
+log.error('parse dom error')
+log.critical('Oh! This should not happen')
 {% endhighlight %}
 
 For more information about logging, please refer to [Doc](https://docs.python.org/2/howto/logging.html)
