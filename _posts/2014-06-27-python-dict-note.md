@@ -3,7 +3,7 @@ layout: post
 title: "Python dict 的实现"
 description: ""
 category:
-tags: [Programming, C++]
+tags: [Python]
 ---
 {% include JB/setup %}
 
