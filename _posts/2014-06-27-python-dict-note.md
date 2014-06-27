@@ -38,7 +38,6 @@ while (<slot is full> && <item in slot doesn't equal the key>) {
 }
 {% endhighlight %}
 这样，对所有的数据进行扁平化处理。至于为何是5而不是6或者4，是经过大量实际数据测试得出的。
-
 5. free list
 频繁的使用malloc()和free()函数会降低程序的效率，所以Python的Dict内部使用了一个array保存了80个分配好的dict，保存在freedicts中。
 
