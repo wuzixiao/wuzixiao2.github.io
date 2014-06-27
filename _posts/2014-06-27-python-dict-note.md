@@ -32,7 +32,7 @@ Python是一门学院派的语言，但是从Dict的实现来看，想成为一�
 slot = hash;
 /* Initial perturbation value */
 perturb = hash;
-while (<slot is full> && <item in slot doesn't equal the key>) {
+while (<slot is full> && <item in slot does not equal the key>) {
     slot = (5*slot) + 1 + perturb;
     perturb >>= 5;
 }
