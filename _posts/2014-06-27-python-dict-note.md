@@ -39,7 +39,7 @@ while (<slot is full> && <item in slot does not equal the key>) {
 {% endhighlight %}
 这样，对所有的数据进行扁平化处理。至于为何是5而不是6或者4，是经过大量实际数据测试得出的。
 
-5. free list。频繁的使用malloc()和free()函数会降低程序的效率，所以Python的Dict内部使用了一个array保存了80个分配好的dict，保存在freedicts中。
+5.free list。频繁的使用malloc()和free()函数会降低程序的效率，所以Python的Dict内部使用了一个array保存了80个分配好的dict，保存在freedicts中。
 
 总结来看，这里面使用的以空间换时间，内存池，对常用情况的特殊情况的方法。其实也都是一些常用的手段，关键是怎么利用这些手段做权衡。可见打模一个工业可用的软件，需要在细处下很多功夫。
 
