@@ -35,7 +35,7 @@ reduce(String key, Iterator values):
 
 MapReduce的流程图
 
-<img src="/images/mapreduce.png" alt="mapreduce" class="img-center" width="250" height="250"/>
+<img src="/images/mapreduce.png" alt="mapreduce" class="img-center"/>
 
 1. input文件先被分割成16m至64m大小（根据配置文件的设定），便于map程序并行的处理。
 2. master程序是整个MapReduce的指挥官。它负责分配任务。一共有M个map任务和R个Reduce任务需要分配。它挑选闲置的机器给他们分配map或者reduce任务。
