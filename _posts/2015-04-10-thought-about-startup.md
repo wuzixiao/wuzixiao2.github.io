@@ -11,7 +11,7 @@ tags: [Startup]
 
 Since last year July, AMLPro has been developing for 7 months, now the 1st version is nearly done and soon will be deployed for a company!
 
-Yesterday, I read <a href="http://www.talkingquickly.co.uk/2015/04/what-id-tell-myself-about-startups/">this</a>blog. The author talked about his thought about his 5 years startups, that I agree a lot. But I know that even I know all of his talk about, I still will make mistakes. Anyway, making progress is a good thing.
+Yesterday, I read <a href="http://www.talkingquickly.co.uk/2015/04/what-id-tell-myself-about-startups/">this</a> blog. The author talked about his thought about his 5 years startups. I know that even I remember all of the content he wrote in this blog, I still will make mistakes. Anyway, making progress is a good thing.
 
 Here is some keypoints of his thoughts that I agree.
 
