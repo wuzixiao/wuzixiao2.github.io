@@ -18,7 +18,7 @@ do_commit() {
     echo $cmd
     git add .;
     git commit -a -m"$log"
-    git push;
+    git push -u origin;
 }
 
 while [ $# -gt 0 ]
