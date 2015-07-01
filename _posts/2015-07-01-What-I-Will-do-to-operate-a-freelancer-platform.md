@@ -7,7 +7,7 @@ tags: [freelancer]
 ---
 {% include JB/setup %}
 
-Millions of pragrammers want to be freelancers. But when you really begin to seek a job on [upwork](http://upwork.com) or [elancer](http://elancer.com), you will find that it is not as easy as you think. 
+Millions of pragrammers want to be freelancers. But when you really begin to seek a job on [upwork](http://upwork.com) or [elance](http://www.elance.com), you will find that it is not as easy as you think. 
 
 Firstly, you will spent quite a lot of time searching. Then, when you find an job you arere interested in, the employer may ask 3-4 questions regarding your opinion of that job, as well as your relevant experience. After you write all of them, sometimes, it feel that finish a funciton of your code. 
 
@@ -19,8 +19,9 @@ If you are an employer, and you really need someone to help you write an program
 
 If I design and operate a freelancer platform. I will do:
 
-- Test freelancer with one or two projects, but not for free. Actually, my platform could be a certain kind of outsourcing company, so these projects can be used by some other companies. In this way, the ability of the freelancer can be estimated more accurate.
 
--  Freelancers don not need to spend too much time on job-seeking. They can apply jobs similar with the projects they have done before. 
+* Test freelancer with one or two projects, but not for free. Actually, my platform could be a certain kind of outsourcing company, so these projects can be used by some other companies. In this way, the ability of the freelancer can be estimated more accurate.
 
--  The platform will check job description manually, and set a proper salary range. Then the job will send directly to the availabe and proper freelancers.
+*  Freelancers don not need to spend too much time on job-seeking. They can apply jobs similar with the projects they have done before. 
+
+*  The platform will check job description manually, and set a proper salary range. Then the job will send directly to the availabe and proper freelancers.
