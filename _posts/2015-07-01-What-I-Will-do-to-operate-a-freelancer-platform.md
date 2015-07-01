@@ -6,6 +6,7 @@ category:
 tags: [freelancer]
 ---
 {% include JB/setup %}
+
 Millions of pragrammers want to be freelancers. But when you really begin to seek a job on [upwork](http://upwork.com) or [elancer](http://elancer.com), you will find that it is not as easy as you think. 
 
 Firstly, you will spent quite a lot of time searching. Then, when you find an job you're interested in, the employer may ask 3-4 questions regarding your opinion of that job, as well as your relevant experience. After you write all of them, sometimes, it feel that finish a funciton of your code. 
